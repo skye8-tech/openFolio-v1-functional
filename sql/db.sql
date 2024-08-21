@@ -1,17 +1,25 @@
+CREATE DATABASE OPENFOLIO();
+
+
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     username TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL
+    passwords VARCHAR(50) NOT NULL,
+    email TEXT NOT NULL,
+    address TEXT NOT NULL,
+    profileDetails TEXT(100) NOT NULL
 );
 
 CREATE TABLE certifications (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name TEXT UNIQUE NOT NULL,
-    description TEXT NULL,
-    image TEXT NULL,
-    url TEXT NULL,
+    Title TEXT(30) NOT NULL,
+    organisation TEXT(40) NOT NULL,
+    description TEXT(250) NULL,
+    image VARCHAR NULL,
+    url VARCHAR NULL,
     issuer TEXT NULL,
-    date TEXT NULL,
+    dateEarned date NULL,
     user_id INTEGER NOT NULL REFERENCES users  
 );
 
@@ -19,16 +27,20 @@ CREATE TABLE certifications (
 CREATE TABLE projects (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name TEXT UNIQUE NOT NULL,
-    description TEXT NULL,
-    image TEXT NULL,
-    url TEXT NULL,
+    Title TEXT(30) NOT NULL,
+    description TEXT(250) NULL,
+    TechnologiesUsed TEXT(30) NOT NULL,
+    projectLinks VARCHAR NOT NULL,
+    image VARCHAR NULL,
+    url VARCHAR NULL,
     user_id INTEGER NOT NULL REFERENCES users
 );
 
 CREATE TABLE skills (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name TEXT UNIQUE NOT NULL,
-    description TEXT NULL,
+    proficiencyLevel TEXT(20) NOT NULL,
+    description TEXT(250) NULL,
     user_id INTEGER NOT NULL REFERENCES users
 );
 
