@@ -1,157 +1,158 @@
 <?php 
 session_start();
+include '../includes/header.php';
+include_once '../config/config.php';
+
+function handleExistingUsernameOrEmailL($username, $email) {
+    $sql = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
+    global $conn;
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        header("location: register.php?username__or_email_exist");
+    }
+}
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Registration</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Registration</h1>
-    <form action="register.php" method="post"  
- enctype="multipart/form-data">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" 
-         required>
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" 
-         required>
-        <label for="password">Password:</label>
-        <input type="text" id="password" name="password"  
-        required>
-        <?php 
-            if(isset($_SESSION['passwordLower'])){
-                echo $_SESSION['passwordLower'];
-            }
-            if(isset($_SESSION['passwordUpper'])){
-                echo $_SESSION['passwordUpper'];
-            }
-            if(isset($_SESSION['passwordNumber'])){
-                echo $_SESSION['passwordNumber'];
-            }
-        ?>   
-        <label for="confirmpassword">Confirm Password:</label>
-        <input type="text" id="confirmpassword" name="confirmpassword"  
-        required>
-        <label for="profilepicture">Profile Picture:</label>
-        <input type="file" id="profilepicture" name="profilepicture" 
- required>
-        <span id="usernameError" class="error"></span> 
 
+<body class="bgpurple">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 shadow-md bg-transparent mt-5 p-5">
+            <h1 class="text-center mt-5">Register</h1>
 
-        <button type="submit">Register</button>
+            <?php 
+
+            if(isset($_SESSION['mysqli_error'])){ ?>
+            <div class="alert alert-danger">
+                <?php echo $_SESSION['mysqli_error']; ?>
+            </div>
+            <?php
+            unset($_SESSION['mysqli_error']);
+            }   
+
+            if(isset($_SESSION['success'])){ ?>
+            <div class="alert alert-success">
+                <?php echo $_SESSION['success']; ?>
+            </div>
+            <?php
+            unset($_SESSION['success']);
+            }
+            ?>
+            <form action="register.php" method="post" enctype="multipart/form-data">
+    
+                <div class="mb-3">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" class="form-control" required>
+                 </div>
+                <div class="mb-3">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" class="form-control" name="password"  required>
+                    
+                    <?php 
+                        if(isset($_SESSION['passwordLower'])){
+                            echo $_SESSION['passwordLower'];
+                        }
+                        if(isset($_SESSION['passwordUpper'])){
+                            echo $_SESSION['passwordUpper'];
+                        }
+                        if(isset($_SESSION['passwordNumber'])){
+                            echo $_SESSION['passwordNumber'];
+                        }
+                ?>   
+                 </div>
+       
+                 <div class="mb-3">
+                    <label for="confirmpassword">Confirm Password:</label>
+                    <input type="password" id="confirmpassword" class="form-control" name="confirmpassword"  required>
+                 </div>
+
+                 <div class="mb-3">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" class="form-control" required>
+                </div>
+
+        <button type="submit" class="form-control bgpurple-lighter">Register</button>
     </form>
     <?php
  
 //validation of the inputs and filteration of the input
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING,20);
+    $username = filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS,20);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $address = $_POST['address'];
     $password = $_POST['password']; 
+    $confirmPassword = $_POST['confirmpassword'];
 
-    $confirmPassword 
- = $_POST['confirmPassword'];
-    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING, 20);
-    $profilePicture = $_FILES['profilePicture'];
-
+    $username = filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS, 20);
+    
+  
     if (empty($username) || empty($email) || empty($password) || empty($confirmPassword)) {
+        $_SESSION["empty"] = "All fields are required";
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION["email"] = "Invalid email format";
     }
     if (strlen($password) < 8) {
         $_SESSION["length"] == " Password can not be less than 8 characters";
-        
-        $hasLowerCase = false;
-        $hasNumber = false;
-        $hasUpperCase = false;
-    
-        for($count=0; $count < strlen($password); $count++){
-            if(ctype_lower($password[$count])){
-                $hasLowerCase = true;
-            }
-            if(ctype_upper($password[$count])){
-                $hasUpperCase = true;
-            }
-            if(ctype_digit($password[$count])){
-                $hasNumber = true;
-            }
+    }
+    $hasLowerCase = false;
+    $hasNumber = false;
+    $hasUpperCase = false;
+
+    for($count=0; $count < strlen($password); $count++){
+        if(ctype_lower($password[$count])){
+            $hasLowerCase = true;
         }
-        
-        if(!$hasLowerCase){
-            $_SESSION["passwordLower"] = "Password must have at least 3 lowercase";
+        if(ctype_upper($password[$count])){
+            $hasUpperCase = true;
         }
-    
-        if(!$hasNumber){
-            $_SESSION["passwordNumber"] = "Password must have at least 1 number";
-        }
-    
-        if(!$hasUpperCase){
-            $_SESSION["passwordUpper"] = "Password must have at least 2 uppercase";
+        if(ctype_digit($password[$count])){
+            $hasNumber = true;
         }
     }
+        
+    if(!$hasLowerCase){
+        $_SESSION["passwordLower"] = "Password must have at least 3 lowercase";
+    }
+
+    if(!$hasNumber){
+        $_SESSION["passwordNumber"] = "Password must have at least 1 number";
+    }
+
+    if(!$hasUpperCase){
+        $_SESSION["passwordUpper"] = "Password must have at least 2 uppercase";
+    }
+
     if ($password !== $confirmPassword) {
         echo "Invalid password,Password must be equal to confirm password";
         echo " Confirm password";
     }
-    //checking duplication in the database
-    function checkDuplicate($conn, $field, $value) {
-        $count = 0;
-        $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE $field = ?");
-        $stmt->bind_param("s", $value);
-        $stmt->execute();
-        $stmt->bind_result($count);
-        $stmt->fetch();
-        $stmt->close();
-        return $count > 0;
-    }
-    
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    
-    if (checkDuplicate($conn, 'username', $username)) {
-        echo "Username already exists";
-    } elseif (checkDuplicate($conn, 'email', $email)) {
-        echo "Email already exists";
-    } else {
-    }
+
     //implementing the hashed password function
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-$allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+handleExistingUsernameOrEmailL($username, $email);
+$sql = "INSERT INTO users (`username`, `email`, `password`, `address`) VALUES ('$username', '$email', '$hashedPassword', '$address')";
+$result = mysqli_query($conn, $sql);
 
-$max_size = 2097152; // 2 MB
-//checking the validation of the profile picture
-if (!empty($_FILES['profilePicture']['name'])) {
-    $file_name = $_FILES['profilePicture']['name'];
-    $file_tmp_name = $_FILES['profilePicture']['tmp_name'];
-    $file_size = $_FILES['profilePicture']['size'];
-    $file_type = $_FILES['profilePicture']['type'];
-
-    if (!in_array($file_type, $allowed_types)) {
-        echo "Invalid file type. Only JPG, PNG, and GIF images are allowed.";
-        exit;
-    }
-    if ($file_size > $max_size) {
-        echo "File size exceeds the maximum limit of 2 MB.";
-        exit;
-    }
-
-    $upload_dir = 'uploads/'; 
-    $target_file = $upload_dir . basename($file_name);
-    if (move_uploaded_file($file_tmp_name, $target_file)) {
-        echo "File uploaded successfully";
-    } else {
-        echo "Error uploading file.";
-    }
+if(!$result){
+    $_SESSION['mysqli_error'] = "Failed to execute query" . mysqli_error($conn);
+    header('location:register.php');
 }
-    // Prepare and execute SQL statement
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password, name, profile_picture) VALUES (?, ?, ?, ?, ?)");
-    //redirecting to a page
+
+$_SESSION['success'] = "User created";
 header('locaton:register.php');
-}
 
 $conn->close();
+
+}
+   
+
+
 ?>
     <script src="script.js"></script>
 </body>

@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/style.css">
-
-</head>
+<?php include '../includes/header.php' ?>
+<?php include_once '../config/config.php' ?>
 <body class="bgpurple">
     
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3 shadow-md bg-transparent mt-5 p-5">
             <h1 class="text-center mt-5">Login</h1>
-            <form action="login.php" method="post">
+            <form action="" method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username">
@@ -32,6 +23,46 @@
     </div>
     </div>
 </div>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   
+    $username = filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS,20);
+    $password = $_POST['password']; 
+
+
+  
+    if (empty($username) || empty($password)) {
+        $_SESSION["empty"] = "All fields are required";
+        header("Location: login.php?username_or_password");
+    }
+
+    $sql  = "SELECT * FROM users WHERE username = '$username' OR email = '$username'";
+    $result = mysqli_query($conn, $sql);
+
+     if (mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+
+        // var_dump($user['username']);
+        // var_dump($user['password']);
+        // exit();
+
+        if(password_verify($password, $user['password'])){
+            $_SESSION['user'] = $user;
+            $_SESSION['authenticated'] = true;
+            $_SESSION['message'] = "Successful Login";
+            header("location: dashboard.php");
+        }
+    }
+    else {
+        $_SESSION["user_not_found"] = "User not found";
+        header('location: login.php?user_not_found');
+    }
+
+$conn->close();
+
+} ?>
+   
+
 
 </body>
 </html>
