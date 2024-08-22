@@ -23,8 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 //adding into the database
 try{
     $sql= "INSERT INTO skills (Skill, Proficiency, Experience, Description)
-    VALUES ('$Skill','$Proficiency','$Experience','$Description') ON DUPLICATE
-    KEY UPDATE Skill='$Skill',Proficiency ='$Proficiency', Experience='$Experience', Description='$Description'";
+    VALUES ('$Skill','$Proficiency','$Experience','$Description')";
    
    if(mysqli_query($conn,$sql)){
         echo "<br> New record created successfully";
