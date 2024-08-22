@@ -1,6 +1,5 @@
 <?php
-$session_start();
-include "index.php";
+session_start();
 
 
 function authentication()
@@ -9,7 +8,8 @@ function authentication()
 
         $message = 'Please login to access this page!';
 
-        header('Location:login.php?' . $message);
+        $_SESSION['unauthorized'] = $message;
+        header('Location:login.php');
     }
 }
 
