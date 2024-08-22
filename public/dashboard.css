@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline:none;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+}
+i{
+    background-color: white;
+    color: red;
+}
+.sidebar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 105px;
+    height: 100vh;
+    padding: 0 1.7rem;
+    color: #fff;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    background: rgb(113, 99, 186, 255);
+}
+.sidebar:hover{
+    width: 240px;
+    transition: 0.5s; 
+}
+.logo{
+    height: 80px;
+    padding: 16px;
+}
+.menu{
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+.menu li{
+    padding: 1rem;
+    margin: 8px;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out   ;
+}
+.menu li:hover,
+.active{
+    background: #e0e0e058;
+
+}
+.menu a{
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+
+}
+.menu a span{
+    overflow: hidden;
+
+}
+.menu a i{
+    font-size: 1.2rem;
+}
+
+.main--content{
+    position: relative;
+    background: #ebe9e0;
+    width: 100%;
+    padding: 1rem;
+}
+.header--wraper img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+
+
+}
+.header--wraper{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+}
+.header--title{
+    color: rgb(133, 99, 186, 255);
+}
+.user--info{
+    display: flex;
+    gap: 1rem;
+}
+
+
+
+.log{
+    width: 50px;
+    height: 30px;
+    border-radius: 10px;
+    background: rgb(113, 99, 186, 255);
+    cursor: pointer;
+}
+.log a{
+    text-decoration: none;
+    color: white;
+}
+.log:hover{
+    background: lightseagreen;
+   
+}
