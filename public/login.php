@@ -3,7 +3,6 @@
 <?php session_start(); ?>
 
 <body class="bgpurple">
-
     <?php
     if (isset($_SESSION['unauthorized'])) { ?>
         <div class="alert alert-danger mt-5">
