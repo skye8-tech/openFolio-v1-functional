@@ -1,0 +1,17 @@
+.bg-purple{
+    background-color: purple;
+}
+button{
+    background-color: purple;
+    border-radius: 10px;
+}
+button:hover{
+    background-color: rgb(241, 199, 238);
+}
+.bg-lightpurple{
+    background-color: rgb(228, 177, 228);
+    
+}
+.img{
+    size: 1%;
+}
