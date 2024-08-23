@@ -3,7 +3,6 @@ session_start();
 include "../config/config.php";
 
 $user_id = $_SESSION['user_id'];
-git 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['submit'])) {
         $title = htmlspecialchars(trim($_POST['title']));
@@ -78,41 +77,41 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
     <style>
-    .container {
-        background-color: rgb(228, 177, 228);
-        box-shadow: 0, 4px 10px rgba(0, 1, 2, 0.1);
-        border-radius: 15px;
+        .container {
+            background-color: rgb(228, 177, 228);
+            box-shadow: 0, 4px 10px rgba(0, 1, 2, 0.1);
+            border-radius: 15px;
 
-    }
+        }
 
-    input[type="text"],
-    input[type="date"],
-    input[type="file"],
-    textarea {
-        width: 100%;
-        margin: 10px 0;
-        border: 3px;
-        border-radius: 4px;
-    }
+        input[type="text"],
+        input[type="date"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            margin: 10px 0;
+            border: 3px;
+            border-radius: 4px;
+        }
 
-    input[type="submit"] {
-        width: 25%;
-        font-size: small;
-        padding: 5px;
-        background-color: purple;
-        color: white;
-        border: none;
-        border-radius: 15px;
-        cursor: pointer;
-        height: 30px;
-        float: right;
+        input[type="submit"] {
+            width: 25%;
+            font-size: small;
+            padding: 5px;
+            background-color: purple;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            height: 30px;
+            float: right;
 
-    }
+        }
 
-    input[type="submit"]:hover {
-        background-color: rgb(218, 137, 228);
-        width: 25%;
-    }
+        input[type="submit"]:hover {
+            background-color: rgb(218, 137, 228);
+            width: 25%;
+        }
     </style>
 </head>
 
