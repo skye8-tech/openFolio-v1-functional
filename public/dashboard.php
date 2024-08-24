@@ -1,3 +1,7 @@
+<?php 
+
+include "middleware.php" ; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +23,5 @@
             </ul>
         </div>
     </div>
-
 </body>
 </html>
