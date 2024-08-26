@@ -4,14 +4,17 @@
 button{
     background-color: purple;
     border-radius: 10px;
+    text-decoration: none;
 }
 button:hover{
     background-color: rgb(241, 199, 238);
 }
 .bg-lightpurple{
     background-color: rgb(228, 177, 228);
-    
 }
-.img{
-    size: 1%;
+img{
+    border-radius: 10px;
+}
+.projbutton{
+    float: left;
 }
