@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+<?php 
+
+include "middleware.php" ; ?>
+
+>>>>>>> fadf7180759e48d8ec3005823836a9a0685bcc56
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +26,9 @@
             </ul>
         </div>
     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> fadf7180759e48d8ec3005823836a9a0685bcc56
 </body>
 </html>
