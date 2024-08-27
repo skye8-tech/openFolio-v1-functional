@@ -2,23 +2,8 @@
 include '../config/config.php';
 session_start();
 
-// $sql = "SELECT Title, date, organisation, description, image FROM certifications WHERE user_id=";
 $sql = "SELECT * FROM certifications WHERE user_id=0";
 $result =mysqli_query($conn, $sql);
-// $row =mysqli_fetch_assoc($result);
-
-// $certificates =[
-//     'title'=> $title,
-//     'date '=>$date,
-//     'organisation'=> $organisation,
-    
-// ];
-
-
-
-
-
-
 
 ?>
 
@@ -33,11 +18,7 @@ $result =mysqli_query($conn, $sql);
 <body>
     <?php 
     if(mysqli_num_rows($result)>0){
-        while($row = mysqli_fetch_assoc($result)){
-            // print_r($row);
-            echo '<br>';
-            // echo $row['name'];
-            ?>
+        while($row = mysqli_fetch_assoc($result)){?>
   
     <div class="container">
         <div class="certificates">
