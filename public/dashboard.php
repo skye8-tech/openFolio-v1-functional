@@ -1,16 +1,11 @@
 <?php 
 
-include "middleware.php" ; ?>
+include "middleware.php" ; 
+include "../includes/header.php";?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dashboard</title>
-    <link rel="stylesheet" href="./css/dashboard.css">
-</head>
-<body>
+<link rel="stylesheet" href="./css/dashboard.css">
+<link rel="stylesheet" href="./css/style.css">
+<body class="bgpurple">
     <div class="navbar">
         <div class="navlinks">
             <ul class="active">
@@ -23,13 +18,13 @@ include "middleware.php" ; ?>
             </ul>
         </div>
     </div>
-    <h1>Welcome</h1>
     
 
     <?php 
 
-    include "../includes/list_sills.php";
-    include "../includes/list_projects.php";
+    include "profile.php";
+    // include "list_skills.php";
+    // include "../includes/list_projects.php";
 
     ?>
 </body>
