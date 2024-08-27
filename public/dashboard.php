@@ -14,5 +14,12 @@ include "middleware.php" ; ?>
 
     <h1>Welcome</h1>
     
+
+    <?php 
+
+    include "../includes/list_sills.php";
+    include "../includes/list_projects.php";
+
+    ?>
 </body>
 </html>
