@@ -9,7 +9,7 @@ include "../includes/header.php";?>
     <div class="navbar">
         <div class="navlinks">
             <ul class="active">
-                <li><a href="">profile</a></li>
+                <li><a href="profile/">profile</a></li>
                 <li><a href="">skills</a></li>
                 <li><a href="">certificatins</a></li>
                 <li><a href="">project</a></li>

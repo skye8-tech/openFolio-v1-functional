@@ -1,24 +1,27 @@
 <?php
+
+
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 /*
 Using user login informatioon data stored within the session is applied using the link to this page.
 */
-// session_start();
-// include(''); // Include your database connection
+session_start();
+include "../../config/config.php"; // Include your database connection
 
-// $username = $_POST['username']; // Username from the login form
-// $password = $_POST['password']; // Password from the login form
+$id = $_SESSION['user']['id'];
+// Fetching user_id based on the provided username and password
+$query = "SELECT * FROM profile WHERE user_id='$id'";
+$result = mysqli_query($conn, $query);
 
-// // Fetching user_id based on the provided username and password
-// $query = "SELECT user_id FROM login_table WHERE username='$username' AND password='$password'";
-// $result = mysqli_query($conn, $query);
+if (mysqli_num_rows($result) == 1) {
+    $profile = mysqli_fetch_assoc($result);
 
-// if (mysqli_num_rows($result) == 1) {
-//     $row = mysqli_fetch_assoc($result);
-//     $_SESSION['user_id'] = $row['user_id'];
-//     header("Location: dashboard.php"); // Redirect to dashboard
-// } else {
-//     echo "Invalid login credentials.";
-// }
+} else {
+    $profile = [];
+}
 
 ?>
 
@@ -115,21 +118,27 @@ Using user login informatioon data stored within the session is applied using th
     <div class="container">
 
         <div class="profile-picture">
-            <img src="<?php echo $profile_picture; ?>" alt="Profile Picture">
-            <button type="file" name="change" >Change Photo</button>
+            <form action="update-profile-image.php" method="post" enctype="multipart/form-data">
+
+            <img src="<?php echo "".$profile['image'] ?? ""; ?>" alt="Profile Picture">
+            <input type="file" name="image" >
+            <button type="submit" name="submit">Upload</button>
+
+            </form>
+           
         </div>
         
         <div class="profile-form">
 
-            <form action="update_profile.php" method="post">
+            <form action="validate_user_input.php" method="post">
             
-            <input type="text" name="first_name" value="<?php echo $first_name; ?>" placeholder="First Name">
-                <input type="text" name="last_name" value="<?php echo $last_name; ?>" placeholder="Last Name">
-                <input type="text" name="phone" value="<?php echo $phone; ?>" placeholder="Contact">
-                <textarea name="bio" placeholder="Bio"><?php echo $bio; ?></textarea>
+            <input type="text" name="first_name" value="<?php echo $profile['first_name'] ?? ""; ?>" placeholder="First Name">
+                <input type="text" name="last_name" value="<?php echo $profile['last_name'] ?? ""; ?>" placeholder="Last Name">
+                <input type="text" name="phone" value="<?php echo $profile['phone'] ?? ""; ?>" placeholder="Contact">
+                <textarea name="bio" placeholder="Bio"><?php echo $profile['bio'] ?? ""; ?></textarea>
             <div class="btn">
                 <button type="reset" onclick="resetForm()">Undo Changes</button>
-                <button type="submit">Save</button>
+                <button type="submit" name="update-profile">Save</button>
                 </div>
             
             
@@ -143,12 +152,12 @@ Using user login informatioon data stored within the session is applied using th
         }
 
     document.querySelector('form').addEventListener('submit', function(e) {
-    let phone = document.querySelector('input[name="phone"]').value;
+    // let phone = document.querySelector('input[name="phone"]').value;
     
-    if (!phone.match(/^\d{13}$/)) {
-        alert("Please enter a valid 13-digit phone number.");
-        e.preventDefault();
-    }
+    // if (!phone.match(/^\d{13}$/)) {
+    //     alert("Please enter a valid 13-digit phone number.");
+    //     e.preventDefault();
+    // }
 });
 
 

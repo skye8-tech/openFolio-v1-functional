@@ -25,8 +25,8 @@ $row = mysqli_fetch_assoc($result);
                             class="img rounded-circle img-fluid"
                             src="projectUploads/.png" onerror="this.src='projectUploads/defualt.png'" alt=""></div>
                             <h2 class="font-weight-bold mt-4"><?php echo $row['username'] ?? ""?></h2>
-                            <p><?php echo $row['email'] ?? ""?></p>
-                            <p><?php echo $row['contact'] ?? ""?></p>
+                            <p><?php echo $row['first_name'] ?? ""?></p>
+                            <p><?php echo $row['last_name'] ?? ""?></p>
                             <i class="far fa-edit fa-2x mb-4"></i>
                         </div>
                     </div>
@@ -41,10 +41,10 @@ $row = mysqli_fetch_assoc($result);
                     </div>
                         <div class="row my-5">
                         <div class="col-sm-6">
-                                <button class="text-white">Share</button>
+                                <button class="text-white text-white p-4 bgpurple-lighter rounded hover:bgpurple">Share</button>
                             </div>
                         <div class="col-sm-6">
-                        <button class="text-white">Edit Profile</button>
+                        <a href="profile/" class="text-white p-4 bgpurple-lighter rounded hover:bgpurple" style="text-decoration: none">Edit Profile</a>
 
                             </div>
                     </div>
