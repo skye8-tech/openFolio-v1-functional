@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-=======
 <?php 
 
 include "middleware.php" ; ?>
 
->>>>>>> fadf7180759e48d8ec3005823836a9a0685bcc56
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,9 +23,6 @@ include "middleware.php" ; ?>
             </ul>
         </div>
     </div>
-<<<<<<< HEAD
-
-<<<<<<< HEAD
     <h1>Welcome</h1>
     
 
@@ -38,9 +32,5 @@ include "middleware.php" ; ?>
     include "../includes/list_projects.php";
 
     ?>
-=======
-=======
->>>>>>> fadf7180759e48d8ec3005823836a9a0685bcc56
->>>>>>> f03dfd6f2ae67780024ec7cf6af2ed9e4668fc2f
 </body>
 </html>
