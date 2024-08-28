@@ -1,7 +1,8 @@
 <?php 
 
 include "middleware.php" ; 
-include "../includes/header.php";?>
+include "../includes/header.php";
+?>
 
 <link rel="stylesheet" href="./css/dashboard.css">
 <link rel="stylesheet" href="./css/style.css">
@@ -23,7 +24,7 @@ include "../includes/header.php";?>
     <?php 
 
     include "profile.php";
-    // include "list_skills.php";
+    include "skills/index.php";
     // include "../includes/list_projects.php";
 
     ?>

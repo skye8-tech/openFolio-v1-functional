@@ -15,16 +15,14 @@ $Image = str_replace('../', '', $row['image']);
 ?>
 
     <div class="container col-md-12  shadow-md p-5">
-        <div class="row">
         <div class="row d-flex justify-content-center">
             <div class=" mt-2 pt-5">
                 <div class="row z-depth-3">
-                    <div class="bgpurple2 col-sm-4  rounded-lef">
-                        <div class="card-block text-center text-white">
+                    <div class="bg-light col-sm-4  rounded-left">
+                        <div class="card-block text-center text-black">
                             <i class="fas fa-user-tie fa-7x mt-5"></i>
                             <div class="container">
-                            <img
-                            class="img rounded-circle img-fluid"
+                            <img class="img rounded-circle img-fluid"
                             src="<?php echo $Image; ?>" onerror="this.src='projectUploads/defualt.png'" alt="" style="width: 200px; height: 200px;; margin-top: 20px"></div>
                             <h2 class="font-weight-bold mt-4"><?php echo $row['username'] ?? ""?></h2>
                             <p><?php echo $row['first_name'] ?? ""?></p>
@@ -32,12 +30,12 @@ $Image = str_replace('../', '', $row['image']);
                             <i class="far fa-edit fa-2x mb-4"></i>
                         </div>
                     </div>
-                    <div class="bg-lightpurple col-sm-8 rounded-right">
-                        <h3 class="mt-3 text-center">Informations</h3>
+                    <div class="bg-light col-sm-8 rounded-right">
+                        <h3 class="mt-3 text-center text-black">Informations</h3>
                         <hr class="badge-primary mt-0 w-">
                         <div class="row">
                         <div class="col-sm-6">
-                            <p class="font-weight-bold">Biography:</p>
+                            <p class="font-weight-bold text-black">Biography:</p>
                             <h6 class="text-muted"><?php echo $row['bio'] ?? ""?></h6>
                         </div>
                     </div>
