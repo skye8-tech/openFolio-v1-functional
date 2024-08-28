@@ -7,9 +7,11 @@ include "../config/config.php";
 
 $id = $_SESSION['user']['id'];
 
-$sql = "SELECT id, first_name, last_name, bio, phone FROM profile where user_id = $id";
+$sql = "SELECT id, first_name, last_name, bio, phone, image FROM profile where user_id = $id";
 $result= mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
+
+$Image = str_replace('../', '', $row['image']);
 ?>
 
     <div class="container col-md-12  shadow-md p-5">
@@ -23,7 +25,7 @@ $row = mysqli_fetch_assoc($result);
                             <div class="container">
                             <img
                             class="img rounded-circle img-fluid"
-                            src="projectUploads/.png" onerror="this.src='projectUploads/defualt.png'" alt=""></div>
+                            src="<?php echo $Image; ?>" onerror="this.src='projectUploads/defualt.png'" alt="" style="width: 200px; height: 200px;; margin-top: 20px"></div>
                             <h2 class="font-weight-bold mt-4"><?php echo $row['username'] ?? ""?></h2>
                             <p><?php echo $row['first_name'] ?? ""?></p>
                             <p><?php echo $row['last_name'] ?? ""?></p>
