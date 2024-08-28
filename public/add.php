@@ -11,8 +11,8 @@
     <h1>Add Skills</h1>
                <label for="name">Skills</label><br>
                <input type="name" name="Skill" id="name" placeholder="Add your skill" required><br><br>
-               <p>Proficiency</p>
-                <select name="Proficiency" >
+               <p>proficiency</p>
+                <select name="proficiencyLevel" >
                     <option value="Novice">Novice</option>
                     <option value="Intermediate"> Intermediate  </option>
                     <option value="Advanced"> Advanced </option>
@@ -40,7 +40,7 @@
     ?>
   <tr>
     <td><?php echo $task['Skill']; ?></td>
-    <td><?php echo $task['Proficiency']; ?></td>
+    <td><?php echo $task['proficiencyLevel']; ?></td>
     <td><?php echo $task['Experience']; ?></td>
     <td><?php echo $task['Description']; ?></td>
     <td>

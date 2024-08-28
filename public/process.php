@@ -2,7 +2,7 @@
 session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $Skill = $_POST['Skill'];
-    $Proficiency = $_POST['Proficiency'];
+    $proficiencyLevel = $_POST['proficiencyLevel'];
     $Experience = $_POST['Experience'];
     $Description = $_POST['Description'];
 //adding into the database
@@ -22,8 +22,8 @@ if($conn){
     echo " Database connected";
 } ;
 try {
-    $sql= "INSERT INTO skills (Skill, Proficiency, Experience, Description)
-    VALUES ('$Skill','$Proficiency','$Experience','$Description')";
+    $sql= "INSERT INTO skills (Skill, proficiencyLevel, Experience, Description)
+    VALUES ('$Skill','$proficiencyLevel','$Experience','$Description')";
   if(mysqli_query($conn, $sql)){
     echo "<br> New record created successfully";
 }
@@ -39,14 +39,14 @@ catch (mysqli_sql_exception $e) {
 }
  $Store = [
     'Skill' => $Skill,
-    'Proficiency' => $Proficiency,
+    'proficiencyLevel' => $proficiencyLevel,
     'Experience' => $Experience,
     'Description' => $Description
  ];
     $_SESSION['Skill'] = $Store;
     $Skill = $_SESSION['Skill'];
 
-    // echo $Store['Skill'],'<br>', $Store['Proficiency'],'<br>',$Store['Experience'],'<br>',$Store['Description'],'<br>';
+    // echo $Store['Skill'],'<br>', $Store['ProficciencyLevel'],'<br>',$Store['Experience'],'<br>',$Store['Description'],'<br>';
     // displaying the information when only one session is stored
 
    foreach ($Store as $value){
