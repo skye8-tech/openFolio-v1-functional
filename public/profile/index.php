@@ -51,14 +51,14 @@ if (mysqli_num_rows($result) == 1) {
             margin-top:50px;
         }
 
-        .profile-picture img {
+        /* .profile-picture img {
             width: 250px;
             height: 150px; 
             border-radius: 30%;
             border: 5px solid #fff;
             box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
             transition: box-shadow 0.3s;
-        }
+        } */
 
         .profile-picture img:hover {
             box-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
@@ -74,7 +74,7 @@ if (mysqli_num_rows($result) == 1) {
             border-radius: 5px;
             cursor: pointer;
             box-shadow:inset 3px -3px 10px  black;
-            tansition:3ms ease-in;
+            transition:3ms ease-in;
         }
         .profile-picture button:active{
             box-shadow:none;
@@ -113,6 +113,9 @@ if (mysqli_num_rows($result) == 1) {
             
         }
     </style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
@@ -120,7 +123,7 @@ if (mysqli_num_rows($result) == 1) {
         <div class="profile-picture">
             <form action="update-profile-image.php" method="post" enctype="multipart/form-data">
 
-            <img src="<?php echo "".$profile['image'] ?? ""; ?>" alt="Profile Picture">
+            <img class="img rounded-circle img-fluid" src="<?php echo "".$profile['image'] ?? ""; ?>" alt="Profile Picture" style="height: 200px; width: 200px">
             <input type="file" name="image" >
             <button type="submit" name="submit">Upload</button>
 
