@@ -6,7 +6,7 @@ use Dotenv\Store\File\Paths;
 
 
 
-<div class="container skills col-md-12 mt-5  card p-5 bg-light">
+<div class="container col-md-12 mt-5  card p-5 bg-light">
     <h1>Skills</h1>
 
     <div class="row">
@@ -35,5 +35,6 @@ use Dotenv\Store\File\Paths;
 
     <div class=" bgpurple text-white p-2 w-25 rounded mt-5 ">
         <a href="../public/skills/add.php" class="text-white" class="link" style="text-decoration: none;">Add Skill</a>
+        <!-- added the changed to ../public/skills/add.php from  /skills/add.php -->
     </div>
 </div>
