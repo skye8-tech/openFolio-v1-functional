@@ -14,7 +14,7 @@ $row = mysqli_fetch_assoc($result);
 $Image = str_replace('../', '', $row['image']);
 ?>
 
-    <div class="container col-md-12  shadow-md p-5">
+    <div class="container col-md-12 mt-2  card p-5 bg-light"> <!--added the bootstap style "card" to the profile and index pages -->
         <div class="row d-flex justify-content-center">
             <div class=" mt-2 pt-5">
                 <div class="row z-depth-3">
