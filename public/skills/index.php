@@ -31,7 +31,7 @@ $skills = getSkills();
                     <!-- edit and delete buttons -->
                      <div class="row">
                         <div class="col-md-6">
-                            <a href="edit.php?id=<?php echo $skill['id'] ?> " class="text-white" class="link"
+                            <a href="skills/edit.php?skillid=<?php echo $skill['id'] ?> " class="text-white" class="link"
                             style="text-decoration: none;"><i class="fas fa-pencil"></i></a>
                         </div>
 

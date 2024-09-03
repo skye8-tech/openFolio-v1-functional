@@ -62,7 +62,7 @@ function getSkillById($id){
     return $skill;
 }
 
-function editSkill($name=null, $level=null, $description=null, $id){
+function editSkill($name, $level, $description, $id){
 
     global $conn;
 

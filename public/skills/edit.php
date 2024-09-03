@@ -1,51 +1,61 @@
 <?php
-include_once __DIR__.'/../config/config.php';
-include_once __DIR__.'/../includes/functions.php';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+include_once __DIR__.'/../../includes/functions.php';
 
 if(!isset($_GET['skillid'])){
   header('location: ../dashboard.php?error=an-error-occured');
 }
 
-$skills = getSkillById($_GET['skillid']);
+$skill = getSkillById($_GET['skillid']);
 
-include_once __DIR__.'/../includes/header.php';
+include_once __DIR__.'/../../includes/header.php';
+
 
 ?>
 
+<link rel="stylesheet" href="../css/style.css">
 
-<body>
-    <form action="editskills.php"  method= "POST">
-    <label>Tilte</label><br>
-    <input type="text" placeholder="<?php echo $title ?>" name="title"></input><br>
-    <label>Profiency</label><br>
-    <input type="text" placeholder="<?php echo $Proficiency ?>" name="proficiency"></input><br>
-    <label>Level</label><br>
-    <input type="text" placeholder="<?php echo $level ?>" name="level"></input><br>
-    <label>Description</label><br>
-    <input type="text" placeholder="<?php echo $description?>" name="description"></input><br>
-    <input type="hidden" name="id" value="<?php echo $id ?>">
-    <input type="submit" name="save_changes" value="save changes"></input>
-    </form>
-    </body>
+
+<body class="container bgpurple">
+  <form action="process.php" method="POST" class="form bgpurple p-5 mt-5 rounded" >
+          <h1 class="">Edit Skill <?php echo $skill['id']; ?></h1>
+          <input type="hidden" name="id" value="<?php echo $skill['id'] ?>">
+          <div class="mt-3">
+              <label for="name">skill</label><br>
+              <input type="text" name="name" value="<?php echo $skill['name'] ?>"  required class="form-control">
+          </div>
+
+          <div class="mt-3">
+              <select name="profficiency" name="" class="form-control">
+                  <option value="">Select Profficient Level</option>
+                  <option value="Novice">Novice</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                  <option value="Superior">Superior</option>
+                  <option value="Expert">Expert</option>
+              </select>
+          </div>     
+
+
+
+          <div class="mt-3">
+              <label for="description">Description</label><br>
+              <textarea name="description" id="description" cols="20" rows="3" class="form-control">
+                <?php echo $skill['description']; ?>
+              </textarea>
+          </div>
+
+          <div class="mt-3">
+          <input type="submit" name="edit-skill" class="form-control bg-lightpurple text-white">
+          </div>
+
+       
+  </form>
+    
+
+</body>
 </html>
-<?php
-if(isset($_POST['save_changes'])){
-    $id= $_POST['id'];
-    $uptitle= $_POST['title'];
-    $upproficiency= $_POST['proficiency'];
-    $uplevel= $_POST['level'];
-    $updescription= $_POST['description'];
-
-    $query = "UPDATE editskills SET title='$uptitle', Profiency='$upproficiency', level='$uplevel', description='$updescription' WHERE id='$id' ";
-    if(mysqli_query($conn, $query)){
-        echo 'update successful';
-    header("location: editskills.php");
-
-    }
-  else{
-    echo 'try again';
-    header("location: editskills.php");
-  }
-}
-// print_r($row);
-?>
