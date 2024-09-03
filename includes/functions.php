@@ -50,3 +50,25 @@ function deleteSkill($id){
 
     return $results;
 }
+
+function getSkillById($id){
+    
+    global $conn;
+
+    $sql = "SELECT * FROM skills WHERE id = $id";
+    $result = mysqli_query($conn, $sql);
+    $skill = mysqli_fetch_assoc($result);
+
+    return $skill;
+}
+
+function editSkill($name=null, $level=null, $description=null, $id){
+
+    global $conn;
+
+    $sql = "UPDATE skills SET name = '$name', profficiency_level = '$level', description = '$description' WHERE id = $id";
+
+    $results = mysqli_query($conn, $sql);
+
+    return $results;
+}
