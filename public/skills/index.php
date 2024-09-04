@@ -3,8 +3,11 @@
 use Dotenv\Store\File\Paths;
 
 include_once __DIR__ . "/../../includes/functions.php";
+include_once __DIR__ . "/../../oop/classes/Skill.php";
 
-$skills = getSkills();
+$skilObj = new Skill();
+
+$skills = $skilObj->getSkills();
 ?>
 
 

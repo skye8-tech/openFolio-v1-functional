@@ -1,27 +1,33 @@
 <?php
 session_start();
+include_once __DIR__ . "/../../oop/classes/Skill.php";
 
-include_once "../../config/config.php";
+$skilObj = new Skill();
 include_once "../../includes/functions.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if(isset($_POST['submit'])) {
-        $name = $_POST['name'];
-        $profficiency = $_POST['profficiency'];
-        $description = $_POST['description'];
-        $user_id = $_SESSION['user']['id'];
+        $skilObj->setName($_POST['name']);
+        $skilObj->setLevel($_POST['profficiency']);
+        $skilObj->setDescription($_POST['description']);
 
 
         try {
         
-            $results = addSkill($name, $profficiency, $description, $user_id);
+            $results = $skilObj->save();
             if(!$results){
                 $_SESSION['message'] =  "Erro:".$sql."<br>". mysqli_error($conn);
                 header("location: add.php");
             }
         
             $_SESSION['message'] = "Skill added";
+
+            echo json_encode([
+                "success" => true,
+                "message" => "Skills Added"
+            ]);
+            exit;
             header("location: ../dashboard.php");
         
         }catch(Exception $e){
