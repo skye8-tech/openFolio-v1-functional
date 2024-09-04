@@ -33,6 +33,3 @@ $response = [
 
 
 echo json_encode($response);
-
-
-echo password_hash("info@Eben1", PASSWORD_DEFAULT);
